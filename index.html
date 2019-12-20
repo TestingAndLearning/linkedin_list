@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>LinkedIn List</title>
+</head>
+
+<body>
+	<!-- remember to send client_id as a param with your linkedin cliend_id -->
+	<script>
+		function redirect_user() {
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var client_id = url.searchParams.get("client_id");
+
+		window.location.replace("https://www.linkedin.com/oauth/v2/authorization?client_id=" + client_id + "&redirect_uri=https://mt9304.github.io/linkedin_list");
+		}
+
+	</script>
+	<script src="js/scripts.js"></script>
+</body>
+</html>
