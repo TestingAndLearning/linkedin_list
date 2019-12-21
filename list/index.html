@@ -8,19 +8,59 @@
 
 <body>
 	<p id="code">
-		Code: 
+		<!-- Code inserted here -->
 	</p>
 	<script>
-		get_access_token();
+		get_code();
 
-		function get_access_token() 
+		function get_code() 
 		{
-			var url_string = window.location.href;
-			var url = new URL(url_string);
-			var code = url.searchParams.get("code");
+			var id_url_string = window.location.href;
+			var id_url = new URL(id_url_string);
+			var client_id = id_url.searchParams.get("client_id");
+
+			var secret_url_string = window.location.href;
+			var secret_url = new URL(secret_url_string);
+			var client_secret = secret_url.searchParams.get("client_secret");
+			
+			var code_url_string = window.location.href;
+			var code_url = new URL(code_url_string);
+			var code = code_url.searchParams.get("code");
 
 			var code_element = document.getElementById("code");
 			code_element.innerHTML = code;
+		}
+
+		function get_access_token() 
+		{
+			document.getElementById("errorMsg").innerHTML = "";
+			document.getElementById("estimateButton").disabled = true;
+			//document.getElementById("estimateButton").innerHTML = "Estimating...";
+			toggleEstimateLoadingIcon();
+			var address = document.getElementById("addressInput").value;
+			var username = document.getElementById("username").innerHTML;
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					document.getElementById("fiberIndicator").innerHTML = JSON.parse(this.responseText).estimate.fiberIndicator;
+				}
+				else if (this.status == 500 || this.status == 503)
+				{
+					console.log("There was an issue retrieving information from the API. " + this.response);
+					//document.getElementById("errorMsg").innerHTML = "<p style='color: red;'>Error retrieving data. Please try again later. </p>";
+					//document.getElementById("estimateButton").disabled = false;
+					//console.log("An error has occured: " + this.responseText + " " + address);
+					//document.getElementById("estimateButton").disabled = false;
+				}
+				else if (this.status == 403)
+				{
+					console.log("Not enough permissions for the APi call. " + this.response);
+				}
+			};
+			xhttp.open("POST", "https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=" + "&redirect_uri=https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist&client_id=" + client_id + "&client_secret=" + client_secret, true);
+			xhttp.send();
 		}
 	</script>
 	<script src="js/scripts.js"></script>
