@@ -20,11 +20,11 @@
 		{
 			var id_url_string = window.location.href;
 			var id_url = new URL(id_url_string);
-			var client_id = id_url.searchParams.get("id");
+			var client_id = id_url.searchParams.get("client_id");
 
 			var secret_url_string = window.location.href;
 			var secret_url = new URL(secret_url_string);
-			var client_secret = secret_url.searchParams.get("sec");
+			var client_secret = secret_url.searchParams.get("state");
 
 			var code_url_string = window.location.href;
 			var code_url = new URL(code_url_string);
@@ -41,7 +41,6 @@
 			document.getElementById("errorMsg").innerHTML = "";
 			document.getElementById("estimateButton").disabled = true;
 			//document.getElementById("estimateButton").innerHTML = "Estimating...";
-			toggleEstimateLoadingIcon();
 			var address = document.getElementById("addressInput").value;
 			var username = document.getElementById("username").innerHTML;
 			var xhttp = new XMLHttpRequest();
