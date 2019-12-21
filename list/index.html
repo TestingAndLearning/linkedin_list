@@ -21,8 +21,8 @@
 
 			var secret_url_string = window.location.href;
 			var secret_url = new URL(secret_url_string);
-			var client_secret = secret_url.searchParams.get("client_secret");
-			
+			var client_secret = secret_url.searchParams.get("sec");
+
 			var code_url_string = window.location.href;
 			var code_url = new URL(code_url_string);
 			var code = code_url.searchParams.get("code");

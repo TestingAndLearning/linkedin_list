@@ -22,7 +22,7 @@
 			var client_secret = secret_url.searchParams.get("client_secret");
 
 			var linkedin_url = "https://www.linkedin.com/oauth/v2/authorization";
-			var redirect_uri = "https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist?client_id=" + client_id + "&client_secret=" + client_secret; //https://mt9304.github.io/linkedin_list/list#client_id_" + client_id + "#client_secret_" + client_secret
+			var redirect_uri = "https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist?client_id=" + client_id + "&sec=" + client_secret; //https://mt9304.github.io/linkedin_list/list#client_id_" + client_id + "#client_secret_" + client_secret
 			//scope=r_liteprofile%20r_emailaddress%20w_member_social
 			window.location.replace(linkedin_url + "?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&state=QWERTYLKJHG12345&scope=r_liteprofile%20r_emailaddress%20w_member_social");
 		}
