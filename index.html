@@ -18,8 +18,8 @@
 			var client_id = url.searchParams.get("client_id");
 			var linkedin_url = "https://www.linkedin.com/oauth/v2/authorization";
 			var redirect_uri = "https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist"; //https://mt9304.github.io/linkedin_list/list
-			
-			window.location.replace(linkedin_url + "?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&state=QWERTYLKJHG12345&scope=r_liteprofile%20r_emailaddress%20w_member_social");
+			//scope=r_liteprofile%20r_emailaddress%20w_member_social
+			window.location.replace(linkedin_url + "?response_type=code&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&state=QWERTYLKJHG12345&scope=r_fullprofile%20w_member_social");
 		}
 	</script>
 	<script src="js/scripts.js"></script>
