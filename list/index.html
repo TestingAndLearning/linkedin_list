@@ -8,7 +8,7 @@
 
 <body>
 	<p>
-		1
+		2
 	</p>
 	<p id="code">
 		<!-- Code inserted here -->
@@ -20,7 +20,7 @@
 		{
 			var id_url_string = window.location.href;
 			var id_url = new URL(id_url_string);
-			var client_id = id_url.searchParams.get("client_id");
+			var client_id = id_url.searchParams.get("id");
 
 			var secret_url_string = window.location.href;
 			var secret_url = new URL(secret_url_string);
@@ -32,6 +32,8 @@
 
 			var code_element = document.getElementById("code");
 			code_element.innerHTML = code;
+			console.log("id: " + client_id)
+			console.log("sec: " + client_secret)
 		}
 
 		function get_access_token() 
