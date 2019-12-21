@@ -7,7 +7,22 @@
 </head>
 
 <body>
-	Hello
+	<p id="code">
+		Code: 
+	</p>
+	<script>
+		get_access_token();
+
+		function get_access_token() 
+		{
+			var url_string = window.location.href;
+			var url = new URL(url_string);
+			var code = url.searchParams.get("code");
+
+			var code_element = document.getElementById("code");
+			code_element.innerHTML = code;
+		}
+	</script>
 	<script src="js/scripts.js"></script>
 </body>
 </html>
