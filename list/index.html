@@ -13,10 +13,13 @@
 	<p id="code">
 		<!-- Code inserted here -->
 	</p>
+	<p id="token">
+		<!-- Code inserted here -->
+	</p>
 	<script>
-		get_code();
+		get_data();
 
-		function get_code() 
+		function get_data() 
 		{
 			var id_url_string = window.location.href;
 			var id_url = new URL(id_url_string);
@@ -32,23 +35,20 @@
 
 			var code_element = document.getElementById("code");
 			code_element.innerHTML = code;
-			console.log("id: " + client_id)
-			console.log("sec: " + client_secret)
+			console.log("id: " + client_id);
+			console.log("sec: " + client_secret);
+
+			get_access_token(client_id, client_secret, code);
 		}
 
-		function get_access_token() 
+		function get_access_token(client_id, client_secret, code) 
 		{
-			document.getElementById("errorMsg").innerHTML = "";
-			document.getElementById("estimateButton").disabled = true;
-			//document.getElementById("estimateButton").innerHTML = "Estimating...";
-			var address = document.getElementById("addressInput").value;
-			var username = document.getElementById("username").innerHTML;
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() 
 			{
 				if (this.readyState == 4 && this.status == 200) 
 				{
-					document.getElementById("fiberIndicator").innerHTML = JSON.parse(this.responseText).estimate.fiberIndicator;
+					document.getElementById("token").innerHTML = JSON.parse(this.responseText);
 				}
 				else if (this.status == 500 || this.status == 503)
 				{
@@ -63,7 +63,7 @@
 					console.log("Not enough permissions for the APi call. " + this.response);
 				}
 			};
-			xhttp.open("POST", "https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=" + "&redirect_uri=https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist&client_id=" + client_id + "&client_secret=" + client_secret, true);
+			xhttp.open("POST", "https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=https%3A%2F%2Fmt9304.github.io%2Flinkedin_list%2Flist&client_id=" + client_id + "&client_secret=" + client_secret, true);
 			xhttp.send();
 		}
 	</script>
